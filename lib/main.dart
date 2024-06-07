@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:abstract_lang_translator/translator.dart'
-    deferred as translator;
+import 'package:abstract_lang_translator/translator.dart';
 import 'package:chinese_font_library/chinese_font_library.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
         Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
         Locale('en', ''),
       ],
-      home: translator.Translator(),
+      home: const Translator(),
     );
   }
 }

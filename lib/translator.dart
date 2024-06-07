@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:pinyin/pinyin.dart';
 
-import 'dictionaries.dart' deferred as dictionaries;
+import 'dictionaries.dart';
 
 class Translator extends StatefulWidget {
   const Translator({super.key});
@@ -37,16 +37,16 @@ class _TranslatorState extends State<Translator> {
 
   void onSubmitted() {
     String value = inputController.text;
-    for (var i in dictionaries.abstractTableMulti.entries) {
+    for (var i in abstractTableMulti.entries) {
       value = value.replaceAll(i.key, i.value);
     }
 
     List<String> toReturn = value.split('');
     for (int i = 0; i < toReturn.length; ++i) {
       String pinyin = PinyinHelper.getPinyinE(toReturn[i]);
-      if (dictionaries.abstractTable.containsKey(pinyin)) {
-        toReturn[i] = dictionaries.abstractTable[pinyin]?[Random().nextInt(
-                dictionaries.abstractTable[pinyin]?.length ?? 0 - 1)] ??
+      if (abstractTable.containsKey(pinyin)) {
+        toReturn[i] = abstractTable[pinyin]
+                ?[Random().nextInt(abstractTable[pinyin]?.length ?? 0 - 1)] ??
             toReturn[i];
       }
       bool change1 = Random().nextBool();
@@ -55,12 +55,10 @@ class _TranslatorState extends State<Translator> {
         toReturn[i] = '⭕️';
       }
       if (change1 &&
-          dictionaries.tableChangeAlphabet
-              .containsKey(toReturn[i].toLowerCase())) {
-        toReturn[i] = dictionaries
-                .tableChangeAlphabet[toReturn[i].toLowerCase()]
-                ?.toString() ??
-            toReturn[i];
+          tableChangeAlphabet.containsKey(toReturn[i].toLowerCase())) {
+        toReturn[i] =
+            tableChangeAlphabet[toReturn[i].toLowerCase()]?.toString() ??
+                toReturn[i];
       }
     }
     resultController.text = toReturn.join();
