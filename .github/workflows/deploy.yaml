@@ -26,7 +26,6 @@ jobs:
         
     - name: Build for web 
       run: |
-        cd example
         flutter build web --release
 
     - name: Copy to public
