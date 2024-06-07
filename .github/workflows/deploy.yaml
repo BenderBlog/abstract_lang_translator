@@ -27,7 +27,7 @@ jobs:
         
     - name: Build for web 
       run: |
-        flutter build web --release
+        flutter build web --release --base-href="/abstract_lang_translator/"
 
     - name: Copy to public
       run: |
